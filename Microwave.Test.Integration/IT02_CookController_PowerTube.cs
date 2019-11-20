@@ -25,5 +25,15 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
             _sut = new CookController(_timer, _display, _powerTube);
         }
+
+        //[Test]
+        //public void StartCooking_ValidParameters_PowerTubeStarted()
+        //{
+        //    _sut.StartCooking(50, 60);
+
+        //    _powerTube.TurnOn(50);
+        //}
+
+
     }
 }
