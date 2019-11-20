@@ -7,20 +7,20 @@ using MicrowaveOvenClasses.Interfaces;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT09_UserInterface_Button_Door_CookController_Timer_Light_Display_PowerTube
+    public class IT11_12_13_Button_UserInterface_Door_CookController_Timer_Light_Display_PowerTube
     {
         public IOutput _output;
         public Display _display;
         public Light _light;
-        public Door _door;
-        public Button _buttonPower;
-        public Button _buttonTime;
-        public Button _buttonStartCancle;
         public Timer _timer;
         public PowerTube _powerTube;
-        public CookController _sut;
+        public CookController _cookController;
         public UserInterface _userInterface;
-        
+        public Door _door;
+
+        public Button _sutPowerButton;
+        public Button _sutTimeButton;
+        public Button _sutStartCancleButton;
 
         [SetUp]
         public void SetUp()
@@ -28,14 +28,14 @@ namespace Microwave.Test.Integration
             _output = Substitute.For<IOutput>();
             _display = new Display(_output);
             _light = new Light(_output);
-            _buttonPower = new Button();
-            _buttonTime = new Button();
-            _buttonStartCancle = new Button();
-            _door = new Door();
+            _sutPowerButton = new Button();
+            _sutTimeButton = new Button();
+            _sutStartCancleButton = new Button();
             _timer = new Timer();
             _powerTube = new PowerTube(_output);
-            _sut = new CookController(_timer, _display, _powerTube);
-            _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _door, _display, _light, _sut);
+            _cookController = new CookController(_timer, _display, _powerTube);
+            _door = new Door();
+            _userInterface = new UserInterface(_sutPowerButton, _sutTimeButton, _sutStartCancleButton, _door, _display, _light, _cookController);
         }
     }
 }

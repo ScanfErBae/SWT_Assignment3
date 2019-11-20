@@ -7,7 +7,7 @@ using MicrowaveOvenClasses.Interfaces;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT08_CookController_UserInterface
+    public class IT10_CookController_UserInterface
     {
         public IDisplay _display;
         public ILight _light;
@@ -17,8 +17,9 @@ namespace Microwave.Test.Integration
         public IButton _buttonStartCancle;
         public ITimer _timer;
         public IPowerTube _powerTube;
-        public CookController _sut;
         public UserInterface _userInterface;
+
+        public CookController _sut;
 
         [SetUp]
         public void SetUp()

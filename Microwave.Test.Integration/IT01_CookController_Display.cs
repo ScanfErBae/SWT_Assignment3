@@ -13,6 +13,7 @@ namespace Microwave.Test.Integration
         public IOutput _output;
         public ITimer _timer;
         public IPowerTube _powerTube;
+
         public CookController _sut;
 
         [SetUp]

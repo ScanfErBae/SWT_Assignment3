@@ -10,16 +10,17 @@ namespace Microwave.Test.Integration
     public class IT03_CookController_Timer
     {
         public IDisplay _display;
-        public ITimer _timer;
         public IPowerTube _powerTube;
+        public Timer _timer;
+
         public CookController _sut;
 
         [SetUp]
         public void SetUp()
         {
-            _timer = new Timer();
             _display = Substitute.For<IDisplay>();
             _powerTube = Substitute.For<IPowerTube>();
+            _timer = new Timer();
             _sut = new CookController(_timer, _display, _powerTube);
         }
     }
