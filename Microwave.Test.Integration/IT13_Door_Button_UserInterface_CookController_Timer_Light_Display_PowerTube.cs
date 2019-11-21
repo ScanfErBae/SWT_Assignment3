@@ -14,7 +14,7 @@ namespace Microwave.Test.Integration
         public Light _light;
         public Button _buttonPower;
         public Button _buttonTime;
-        public Button _buttonStartCancle;
+        public Button _buttonStartCancel;
         public Timer _timer;
         public PowerTube _powerTube;
         public CookController _cookController;
@@ -30,12 +30,12 @@ namespace Microwave.Test.Integration
             _light = new Light(_output);
             _buttonPower = new Button();
             _buttonTime = new Button();
-            _buttonStartCancle = new Button();
+            _buttonStartCancel = new Button();
             _timer = new Timer();
             _powerTube = new PowerTube(_output);
             _cookController = new CookController(_timer, _display, _powerTube);
             _sut = new Door();
-            _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _sut, _display, _light, _cookController);
+            _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancel, _sut, _display, _light, _cookController);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Microwave.Test.Integration
             // Now in SetPower
             _buttonTime.Press();
             // Now in SetTime
-            _buttonStartCancle.Press();
+            _buttonStartCancel.Press();
             // Now in SetPower
             _sut.Open();
 

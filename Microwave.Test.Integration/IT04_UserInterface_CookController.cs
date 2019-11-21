@@ -15,7 +15,7 @@ namespace Microwave.Test.Integration
         public IDoor _door;
         public IButton _buttonPower;
         public IButton _buttonTime;
-        public IButton _buttonStartCancle;
+        public IButton _buttonStartCancel;
         public ITimer _timer;
         public IPowerTube _powerTube;
         public CookController _cookController;
@@ -29,12 +29,12 @@ namespace Microwave.Test.Integration
             _light = Substitute.For<ILight>();
             _buttonPower = Substitute.For<IButton>();
             _buttonTime = Substitute.For<IButton>();
-            _buttonStartCancle = Substitute.For<IButton>();
+            _buttonStartCancel = Substitute.For<IButton>();
             _door = Substitute.For<IDoor>();
             _timer = Substitute.For<ITimer>();
             _powerTube = Substitute.For<IPowerTube>();
             _cookController = new CookController(_timer, _display, _powerTube);
-            _sut = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _door, _display, _light, _cookController);
+            _sut = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancel, _door, _display, _light, _cookController);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Microwave.Test.Integration
         {
             _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _timer.Received(1).Start(60);
         }
@@ -52,7 +52,7 @@ namespace Microwave.Test.Integration
         {
             _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _powerTube.Received(1).TurnOn(7);
         }
@@ -66,7 +66,7 @@ namespace Microwave.Test.Integration
         {
             _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _door.Opened += Raise.EventWith(this, EventArgs.Empty);
 
@@ -78,7 +78,7 @@ namespace Microwave.Test.Integration
         {
             _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _door.Opened += Raise.EventWith(this, EventArgs.Empty);
 
@@ -90,9 +90,9 @@ namespace Microwave.Test.Integration
         {
             _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _timer.Received().Stop();
         }
@@ -102,9 +102,9 @@ namespace Microwave.Test.Integration
         {
             _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _powerTube.Received().TurnOff();
         }
