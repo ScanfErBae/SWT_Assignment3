@@ -128,7 +128,7 @@ namespace Microwave.Test.Integration
 
             //Powertube works by pressing StartCancelButton
             Assert.That(_powerTube.IsOn, Is.EqualTo(true));
-            _output.Received(1).OutputLine("PowerTube works with 50 %");
+            _output.Received(1).OutputLine("PowerTube works with 7 %");
         }
 
 
