@@ -57,6 +57,10 @@ namespace Microwave.Test.Integration
             _powerTube.Received(1).TurnOn(7);
         }
 
+     
+
+
+
         [Test]
         public void OnDoorOpened_MicrowaveIsCooking_TimerStopped()
         {
