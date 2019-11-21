@@ -169,7 +169,7 @@ namespace Microwave.Test.Integration
            _sutTimeButton.Press();
            _sutStartCancelButton.Press();
            _sutStartCancelButton.Press();
-           _display.Received(1).Clear();
+           _display.Received().Clear();
        }
 
 
