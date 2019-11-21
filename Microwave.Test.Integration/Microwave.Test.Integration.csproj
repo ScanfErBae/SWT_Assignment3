@@ -60,8 +60,6 @@
     <Compile Include="IT10_CookController_UserInterface.cs" />
     <Compile Include="IT11_12_13_Button_UserInterface_Door_CookController_Timer_Light_Display_PowerTube.cs" />
     <Compile Include="IT14_Door_Button_UserInterface_CookController_Timer_Light_Display_PowerTube.cs" />
-    <Compile Include="IT15_Door_Button_UserInterface_CookController_Timer_Light_Display_PowerTube_Output.cs" />
-    <Compile Include="IT16_17_18_Button_UserInterface_Door_CookController_Timer_Light_Display_PowerTube_Output.cs" />
     <Compile Include="IT09_UserInterface_CookController.cs" />
     <Compile Include="IT08_Door_UserInterface.cs" />
     <Compile Include="IT05_6_7_Button_UserInterface.cs" />
