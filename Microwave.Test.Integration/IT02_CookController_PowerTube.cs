@@ -56,6 +56,14 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
+        public void TestException()
+        {
+            Assert.Throws( Is.TypeOf<ApplicationException>().And.Message.EqualTo("Must be between 1 and 100 % (incl.)"),
+                delegate { throw new ApplicationException("Must be between 1 and 100 % (incl.)"); });
+        }
+
+
+        [Test]
         public void StartCooking_ValidParameters_PowerTubeStopped()
         {
             _sut.StartCooking(50, 60);
