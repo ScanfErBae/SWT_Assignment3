@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics;
+using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
@@ -41,7 +42,7 @@ namespace Microwave.Test.Integration
         #region PowerButton
 
         [Test]
-        public void Press_once_show_displayEqual100()
+        public void Press_once_show_displayEqual50()
         {
             _sutPowerButton.Press();
             _output.Received(1).OutputLine("Display shows: 50 W");
@@ -67,7 +68,7 @@ namespace Microwave.Test.Integration
             {
                 _sutPowerButton.Press();
             }
-            _display.ShowPower(700);
+            _output.Received(1).OutputLine("Display shows: 700 W");
         }
 
         #endregion
@@ -95,6 +96,7 @@ namespace Microwave.Test.Integration
             _output.Received(1).OutputLine("Display shows: 02:00");
             _output.Received(1).OutputLine("Display shows: 03:00");
             _output.Received(1).OutputLine("Display shows: 04:00");
+            
         }
 
         [Test]
@@ -107,8 +109,16 @@ namespace Microwave.Test.Integration
         #endregion
 
         #region Start-CancelButton
+        public void Press_StartCancelButton_once_system_is_cooking()
+        {
+            _sutPowerButton.Press();
+            _sutTimeButton.Press();
+            _sutStartCancelButton.Press();
 
-        
+           
+
+        }
+
 
         #endregion
     }
