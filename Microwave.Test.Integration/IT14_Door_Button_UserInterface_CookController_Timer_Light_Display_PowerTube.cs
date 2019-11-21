@@ -37,5 +37,8 @@ namespace Microwave.Test.Integration
             _sut = new Door();
             _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _sut, _display, _light, _cookController);
         }
+
+
+
     }
 }
