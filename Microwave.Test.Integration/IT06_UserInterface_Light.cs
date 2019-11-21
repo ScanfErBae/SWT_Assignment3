@@ -70,35 +70,35 @@ namespace Microwave.Test.Integration
 
 
 
-        //[Test]
-        //public void CookingIsDone_Clear_Called()
-        //{
-        //    _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetPower
-        //    _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-        //    _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        [Test]
+        public void CookingIsDone_Clear_Called()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-        //    _sut.CookingIsDone();
+            _sut.CookingIsDone();
 
-        //    // Now in SetTime
-        //    _output.Received(1).OutputLine("Light is turned off");
-        //}
+            // Now in SetTime
+            _output.Received(1).OutputLine("Light is turned off");
+        }
 
-        //[Test]
-        //public void ButtonStartCancel_Pressed_When_Cooking_()
-        //{
-        //    _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetPower
-        //    _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-        //    _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        [Test]
+        public void ButtonStartCancel_Pressed_When_Cooking_()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-        //    _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-        //    // Now in SetTime
-        //    _output.Received(1).OutputLine("Light is turned off");
-        //}
+            // Now in SetTime
+            _output.Received(1).OutputLine("Light is turned off");
+        }
 
     }
 
