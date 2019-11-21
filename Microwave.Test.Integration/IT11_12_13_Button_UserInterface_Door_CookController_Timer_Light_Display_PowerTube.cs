@@ -20,7 +20,7 @@ namespace Microwave.Test.Integration
 
         public Button _sutPowerButton;
         public Button _sutTimeButton;
-        public Button _sutStartCancleButton;
+        public Button _sutStartCancelButton;
 
         [SetUp]
         public void SetUp()
@@ -30,12 +30,12 @@ namespace Microwave.Test.Integration
             _light = new Light(_output);
             _sutPowerButton = new Button();
             _sutTimeButton = new Button();
-            _sutStartCancleButton = new Button();
+            _sutStartCancelButton = new Button();
             _timer = new Timer();
             _powerTube = new PowerTube(_output);
             _cookController = new CookController(_timer, _display, _powerTube);
             _door = new Door();
-            _userInterface = new UserInterface(_sutPowerButton, _sutTimeButton, _sutStartCancleButton, _door, _display, _light, _cookController);
+            _userInterface = new UserInterface(_sutPowerButton, _sutTimeButton, _sutStartCancelButton, _door, _display, _light, _cookController);
         }
     }
 }
