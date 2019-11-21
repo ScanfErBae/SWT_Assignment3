@@ -37,7 +37,7 @@ namespace Microwave.Test.Integration
         {
             _cookController.StartCooking(50, 1);
 
-            Thread.Sleep(1010);
+            Thread.Sleep(1500);
 
             _powerTube.Received(1).TurnOff();
         }
@@ -47,7 +47,7 @@ namespace Microwave.Test.Integration
         {
             _cookController.StartCooking(50, 1);
 
-            Thread.Sleep(1010);
+            Thread.Sleep(1500);
 
             _userInterface.Received(1).CookingIsDone();
         }
@@ -67,7 +67,7 @@ namespace Microwave.Test.Integration
         {
             _cookController.StartCooking(50, 60);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
 
             _display.Received(1).ShowTime(0, 59);
 
