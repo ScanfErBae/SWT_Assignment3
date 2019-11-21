@@ -21,6 +21,11 @@
         <FunctionMask>*</FunctionMask>
       </FilterEntry>
       <FilterEntry>
+        <ModuleMask>Microwave.Test.Integration</ModuleMask>
+        <ClassMask>Microwave.Test.Integration.*</ClassMask>
+        <FunctionMask>*</FunctionMask>
+      </FilterEntry>
+      <FilterEntry>
         <ModuleMask>nunit.framework</ModuleMask>
         <ClassMask>*</ClassMask>
         <FunctionMask>*</FunctionMask>
