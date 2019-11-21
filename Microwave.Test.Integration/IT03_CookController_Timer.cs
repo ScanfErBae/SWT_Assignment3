@@ -24,10 +24,10 @@ namespace Microwave.Test.Integration
             _sut = new CookController(_timer, _display, _powerTube);
         }
 
-        public void Test1()
-        {
-            _sut.StartCooking(50,60);
-            Assert.That(_timer);
-        }
+        //public void Test1()
+        //{
+        //    _sut.StartCooking(50,60);
+        //    Assert.That(_timer);
+        //}
     }
 }
