@@ -37,11 +37,13 @@ namespace Microwave.Test.Integration
             _sut = new Door();
             _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _sut, _display, _light, _cookController);
         }
+
         [Test]
         public void OpenDoor_1SubscriberAndReady_LightTurnOnIsCalled_OutputLine_Tested()
         {
             _sut.Open();
             _output.Received(1).OutputLine("Light is turned on");
+            Assert.That(_light.isOn, Is.EqualTo(true));
         }
 
         [Test]
@@ -50,6 +52,8 @@ namespace Microwave.Test.Integration
             _sut.Open();
             _sut.Close();
             _output.Received(1).OutputLine("Light is turned off");
+            Assert.That(_light.isOn, Is.EqualTo(false));
+
         }
 
         [Test]
@@ -64,7 +68,9 @@ namespace Microwave.Test.Integration
             _sut.Open();
 
             _output.Received(1).OutputLine("Display cleared");
+            _output.Received(1).OutputLine("PowerTube works with 50 %");
             _output.Received(1).OutputLine("PowerTube turned off");
+            
         }
     }
 }
