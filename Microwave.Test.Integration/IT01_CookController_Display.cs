@@ -29,7 +29,8 @@ namespace Microwave.Test.Integration
             _sut = new CookController(_timer, _display, _powerTube, _userInterface);
         }
 
-        [TestCase]
+        [Test]
+
         public void Cooking_TimerTick_DisplayCalled()
         {
             _sut.StartCooking(50, 60);
@@ -37,7 +38,9 @@ namespace Microwave.Test.Integration
             _timer.TimeRemaining.Returns(115);
             _timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
 
-            _display.ShowTime(1,55);
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("1:55")));
         }
+
+
     }
 }
