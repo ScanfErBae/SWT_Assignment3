@@ -11,7 +11,7 @@ namespace Microwave.Test.Integration
 {
     [TestFixture]
     public class 
-        IT04_Timer_CookController
+        IT03_Timer_CookController
     {
         public IDisplay _display;
         public IPowerTube _powerTube;
