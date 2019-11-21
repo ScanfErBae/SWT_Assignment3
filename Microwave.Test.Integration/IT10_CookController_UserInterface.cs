@@ -35,16 +35,25 @@ namespace Microwave.Test.Integration
             _powerTube = Substitute.For<IPowerTube>();
             _sut = new CookController(_timer, _display, _powerTube);
             _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _door, _display, _light, _sut);
+            _sut.UI = _userInterface;
+
+
         }
 
-        //[Test]
-        //public void Cooking_TimerExpired_UICalled()
-        //{
-        //    _sut.StartCooking(50, 60);
+        [Test]
+        public void Cooking_TimerExpired_UICalled()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-        //    _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
 
-        //    _userInterface.CookingIsDone();
-        //}
+            _display.Received().Clear();
+            _light.Received(1).TurnOff();
+
+        }
     }
 }
