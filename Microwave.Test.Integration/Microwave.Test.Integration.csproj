@@ -57,15 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IT09_CookController_UserInterface.cs" />
+    <Compile Include="IT05_CookController_UserInterface.cs" />
     <Compile Include="IT10_11_12_Button_UserInterface_Door_CookController_Timer_Light_Display_PowerTube.cs" />
     <Compile Include="IT13_Door_Button_UserInterface_CookController_Timer_Light_Display_PowerTube.cs" />
-    <Compile Include="IT08_UserInterface_CookController.cs" />
-    <Compile Include="IT07_Door_UserInterface.cs" />
-    <Compile Include="IT04_5_6_Button_UserInterface.cs" />
-    <Compile Include="IT03_Timer_CookController.cs" />
-    <Compile Include="IT02_CookController_PowerTube.cs" />
-    <Compile Include="IT01_CookController_Display.cs" />
+    <Compile Include="IT04_UserInterface_CookController.cs" />
+    <Compile Include="IT09_Door_UserInterface.cs" />
+    <Compile Include="IT06_7_8_Button_UserInterface.cs" />
+    <Compile Include="IT01_Timer_CookController.cs" />
+    <Compile Include="IT02_CookController_PowerTube_Time.cs" />
+    <Compile Include="IT03_CookController_Display_Time.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

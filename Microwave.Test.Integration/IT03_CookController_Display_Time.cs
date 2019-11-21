@@ -8,7 +8,7 @@ using MicrowaveOvenClasses.Interfaces;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT01_CookController_Display
+    public class IT03_CookController_Display_Time
     {
         public IDisplay _display;
         public IOutput _output;
@@ -22,7 +22,7 @@ namespace Microwave.Test.Integration
         public void SetUp()
         {
             _userInterface = Substitute.For<IUserInterface>();
-            _timer = Substitute.For<ITimer>();
+            _timer = new Timer();
             _powerTube = Substitute.For<IPowerTube>();
             _output = Substitute.For<IOutput>();
             _display = new Display(_output);
@@ -30,15 +30,13 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-
         public void Cooking_TimerTick_DisplayCalled()
         {
             _sut.StartCooking(50, 60);
+      
+            System.Threading.Thread.Sleep(1000);
 
-            _timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
-
-            _output.Received().OutputLine("Display shows: 00:00");
-
+            _output.Received().OutputLine("Display shows: 00:59");
         }
     }
 }

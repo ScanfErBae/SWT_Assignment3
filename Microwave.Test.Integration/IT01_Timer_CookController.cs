@@ -10,8 +10,7 @@ using Timer = MicrowaveOvenClasses.Boundary.Timer;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class 
-        IT03_Timer_CookController
+    public class IT01_Timer_CookController
     {
         public IDisplay _display;
         public IPowerTube _powerTube;

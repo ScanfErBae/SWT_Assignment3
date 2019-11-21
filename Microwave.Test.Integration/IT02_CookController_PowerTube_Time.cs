@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
@@ -10,7 +9,7 @@ using NSubstitute.ExceptionExtensions;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT02_CookController_PowerTube
+    public class IT02_CookController_PowerTube_Time
     {
         public IDisplay _display;
         public IOutput _output;
@@ -24,7 +23,7 @@ namespace Microwave.Test.Integration
         public void SetUp()
         {
             _userInterface = Substitute.For<IUserInterface>();
-            _timer = Substitute.For<ITimer>();
+            _timer = new Timer();
             _output = Substitute.For<IOutput>();
             _display = Substitute.For<IDisplay>();
             _powerTube = new PowerTube(_output);
@@ -71,7 +70,7 @@ namespace Microwave.Test.Integration
         {
             _sut.StartCooking(50, 1);
 
-            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+            System.Threading.Thread.Sleep(1500);
 
             _output.Received(1).OutputLine("PowerTube turned off");
         }
