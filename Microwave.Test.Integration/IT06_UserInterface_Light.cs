@@ -19,7 +19,6 @@ namespace Microwave.Test.Integration
         public ICookController _cookController;
 
         public Light _light;
-
         public UserInterface _sut;
 
 

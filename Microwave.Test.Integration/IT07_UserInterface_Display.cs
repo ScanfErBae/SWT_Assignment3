@@ -14,7 +14,7 @@ namespace Microwave.Test.Integration
         public ICookController _cookController;
         public IButton _buttonPower;
         public IButton _buttonTime;
-        public IButton _buttonStartCancle;
+        public IButton _buttonStartCancel;
         public IDoor _door;
         public ILight _light;
 
@@ -32,13 +32,13 @@ namespace Microwave.Test.Integration
             _output = Substitute.For<IOutput>();
             _buttonPower = Substitute.For<IButton>();
             _buttonTime = Substitute.For<IButton>();
-            _buttonStartCancle = Substitute.For<IButton>();
+            _buttonStartCancel = Substitute.For<IButton>();
             _door = Substitute.For<IDoor>();
             _light = Substitute.For<ILight>();
 
             _timer = new Timer();
             _display = new Display(_output);
-            _sut = new UserInterface(_buttonPower, _buttonTime, _buttonStartCancle, _door, _display, _light, _cookController);
+            _sut = new UserInterface(_buttonPower, _buttonTime, _buttonStartCancel, _door, _display, _light, _cookController);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Microwave.Test.Integration
             // Now in SetPower
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetTime
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             _sut.CookingIsDone();
 
@@ -81,7 +81,7 @@ namespace Microwave.Test.Integration
             // Now in SetPower
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetTime
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
             
             _door.Opened += Raise.EventWith(this, EventArgs.Empty);
 
@@ -96,9 +96,9 @@ namespace Microwave.Test.Integration
             // Now in SetPower
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetTime
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             // Now in SetTime
             _output.Received(1).OutputLine("Display cleared");

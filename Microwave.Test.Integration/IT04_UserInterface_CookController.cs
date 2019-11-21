@@ -18,8 +18,8 @@ namespace Microwave.Test.Integration
         public IButton _buttonStartCancel;
         public ITimer _timer;
         public IPowerTube _powerTube;
+        
         public CookController _cookController;
-
         public UserInterface _sut;
 
         [SetUp]
@@ -33,6 +33,7 @@ namespace Microwave.Test.Integration
             _door = Substitute.For<IDoor>();
             _timer = Substitute.For<ITimer>();
             _powerTube = Substitute.For<IPowerTube>();
+
             _cookController = new CookController(_timer, _display, _powerTube);
             _sut = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancel, _door, _display, _light, _cookController);
         }

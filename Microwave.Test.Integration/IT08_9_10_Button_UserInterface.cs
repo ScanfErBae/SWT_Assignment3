@@ -28,6 +28,7 @@ namespace Microwave.Test.Integration
             _door = Substitute.For<IDoor>();
             _light = Substitute.For<ILight>();
             _cookController = Substitute.For<ICookController>();
+           
             _sutPowerButton = new Button();
             _sutTimeButton = new Button();
             _sutStartCancelButton = new Button();

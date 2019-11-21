@@ -10,12 +10,12 @@ namespace Microwave.Test.Integration
     [TestFixture]
     public class IT03_CookController_Display_Time
     {
-        public IDisplay _display;
         public IOutput _output;
-        public ITimer _timer;
         public IUserInterface _userInterface;
         public IPowerTube _powerTube;
 
+        public Display _display;
+        public Timer _timer;
         public CookController _sut;
 
         [SetUp]
