@@ -106,7 +106,7 @@ namespace Microwave.Test.Integration
         #region StartCancelButton
 
         [Test]
-        void Press_StartCancel_at_start_Nothing_happens()
+        public void Press_StartCancel_at_start_Nothing_happens()
         {
             _sutStartCancelButton.Press();
             _display.DidNotReceiveWithAnyArgs();
