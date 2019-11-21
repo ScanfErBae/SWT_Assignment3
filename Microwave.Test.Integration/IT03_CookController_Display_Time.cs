@@ -34,7 +34,7 @@ namespace Microwave.Test.Integration
         {
             _sut.StartCooking(50, 60);
       
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(1500);
 
             _output.Received().OutputLine("Display shows: 00:59");
         }
