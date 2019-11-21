@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Threading;
+using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
-using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Interfaces;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace Microwave.Test.Integration
 {
@@ -12,6 +14,7 @@ namespace Microwave.Test.Integration
         public IDisplay _display;
         public IPowerTube _powerTube;
         public Timer _timer;
+        public IUserInterface _userInterface;
 
         public CookController _sut;
 
@@ -21,13 +24,25 @@ namespace Microwave.Test.Integration
             _display = Substitute.For<IDisplay>();
             _powerTube = Substitute.For<IPowerTube>();
             _timer = new Timer();
-            _sut = new CookController(_timer, _display, _powerTube);
+            _userInterface = Substitute.For<IUserInterface>();
+            _sut = new CookController(_timer, _display, _powerTube, _userInterface);
         }
 
-        //public void Test1()
-        //{
-        //    _sut.StartCooking(50,60);
-        //    Assert.That(_timer);
-        //}
+        [Test]
+        public void StartCooking_TimeSet60_TimerStartedWith60()
+        {
+            _sut.StartCooking(50, 2);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(2));
+            System.Threading.Thread.Sleep(1000);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void StartCooking_TimeSet60_TimerS1tartedWith60()
+        {
+            _sut.StartCooking(50, 2);
+            System.Threading.Thread.Sleep(1000);
+            _display.Received(1).ShowTime(0,1);
+        }
     }
 }
