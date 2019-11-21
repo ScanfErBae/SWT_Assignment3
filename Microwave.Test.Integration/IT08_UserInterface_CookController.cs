@@ -8,7 +8,7 @@ using MicrowaveOvenClasses.Interfaces;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT09_UserInterface_CookController
+    public class IT08_UserInterface_CookController
     {
         public IDisplay _display;
         public ILight _light;
@@ -56,6 +56,10 @@ namespace Microwave.Test.Integration
 
             _powerTube.Received(1).TurnOn(7);
         }
+
+     
+
+
 
         [Test]
         public void OnDoorOpened_MicrowaveIsCooking_TimerStopped()
