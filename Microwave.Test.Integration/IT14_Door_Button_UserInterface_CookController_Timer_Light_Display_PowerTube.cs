@@ -70,8 +70,33 @@ namespace Microwave.Test.Integration
             Assert.That(_powerTube.IsOn, Is.EqualTo(false));
             _output.Received(1).OutputLine("PowerTube turned off");
             _output.Received(1).OutputLine("Display cleared");
+        }
 
+        [Test]
+        public void OpenDoor_When_PowerSet_OutputLine_Tested()
+        {
+            _buttonPower.Press();
+            // Now in SetPower
+            _sut.Open();
 
+            _output.Received(1).OutputLine("Display cleared");
+            _output.Received(1).OutputLine("Light is turned on");
+            Assert.That(_light.isOn, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void OpenDoor_When_SetTime_OutputLine_Tested()
+        {
+            _buttonPower.Press();
+            // Now in SetPower
+            _buttonTime.Press();
+            // Now in SetTime
+            _sut.Open();
+
+            _output.Received(1).OutputLine("Display cleared");
+            _output.Received(1).OutputLine("Light is turned on");
+            Assert.That(_light.isOn, Is.EqualTo(true));
         }
     }
+
 }
