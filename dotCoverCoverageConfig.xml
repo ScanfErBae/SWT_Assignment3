@@ -16,11 +16,6 @@
         <FunctionMask>*</FunctionMask>
       </FilterEntry>
       <FilterEntry>
-        <ModuleMask>Microwave.Test.Unit</ModuleMask>
-        <ClassMask>Microwave.Test.Unit.*</ClassMask>
-        <FunctionMask>*</FunctionMask>
-      </FilterEntry>
-      <FilterEntry>
         <ModuleMask>Microwave.Test.Integration</ModuleMask>
         <ClassMask>Microwave.Test.Integration.*</ClassMask>
         <FunctionMask>*</FunctionMask>
