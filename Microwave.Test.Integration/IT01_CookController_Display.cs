@@ -35,10 +35,10 @@ namespace Microwave.Test.Integration
         {
             _sut.StartCooking(50, 60);
 
-            _timer.TimeRemaining.Returns(115);
             _timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
 
-            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("1:55")));
+            _output.Received().OutputLine("Display shows: 00:00");
+
         }
     }
 }

@@ -36,7 +36,8 @@ namespace Microwave.Test.Integration
         {
             _sut.StartCooking(700, 60);
 
-            Assert.That(_powerTube.IsOn, Is.True); 
+            _output.Received(1).OutputLine("PowerTube works with 100 %");
+
         }
 
         [Test]
@@ -60,7 +61,9 @@ namespace Microwave.Test.Integration
         {
             _sut.StartCooking(50, 60);
             _sut.Stop();
-            Assert.That(_powerTube.IsOn, Is.False);
+
+            _output.Received(1).OutputLine("PowerTube turned off");
+
         }
 
         [Test]
@@ -70,12 +73,7 @@ namespace Microwave.Test.Integration
 
             _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
 
-            Assert.That(_powerTube.IsOn, Is.False);
+            _output.Received(1).OutputLine("PowerTube turned off");
         }
-
-
-
-     
-
     }
 }

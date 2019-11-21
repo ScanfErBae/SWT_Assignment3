@@ -120,14 +120,12 @@ namespace Microwave.Test.Integration
             _sutStartCancelButton.Press();
 
             //Light is turned on 
-            Assert.That(_light.isOn, Is.EqualTo(true));
             _output.Received(1).OutputLine("Light is turned on");
 
             //CookController is cooking & calling to the timer class with startcooking
             Assert.That(_timer.TimeRemaining, Is.EqualTo(60));
 
             //Powertube is turned on
-            Assert.That(_powerTube.IsOn, Is.EqualTo(true));
             _output.Received(1).OutputLine("PowerTube works with 7 %");
         }
 
@@ -143,14 +141,12 @@ namespace Microwave.Test.Integration
             _sutStartCancelButton.Press();
 
             //Light is turned off
-            Assert.That(_light.isOn, Is.EqualTo(false));
             _output.Received(1).OutputLine("Light is turned off");
 
             //CookController is cooking & calling to the timer class with startcooking
             Assert.That(_timer.TimeRemaining, Is.EqualTo(60));
 
             //Powertube is turned off
-            Assert.That(_powerTube.IsOn, Is.EqualTo(false));
             _output.Received(1).OutputLine("PowerTube turned off");
         }
         #endregion
