@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
@@ -12,7 +13,7 @@ namespace Microwave.Test.Integration
         public IDisplay _display;
         public IOutput _output;
         public ITimer _timer;
-        public IPowerTube _powerTube;
+        public PowerTube _powerTube;
 
         public CookController _sut;
 
@@ -25,5 +26,23 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
             _sut = new CookController(_timer, _display, _powerTube);
         }
+
+        [Test]
+        public void StartCooking_ValidParameters_PowerTubeStarted()
+        {
+            _sut.StartCooking(50, 60);
+
+            Assert.That(_powerTube.IsOn, Is.EqualTo(true)); 
+        }
+
+        [Test]
+        public void StartCooking_ValidParameters_PowerTubeStopped()
+        {
+            _sut.StartCooking(50, 60);
+            _sut.Stop();
+            Assert.That(_powerTube.IsOn, Is.EqualTo(false));
+        }
+
+
     }
 }

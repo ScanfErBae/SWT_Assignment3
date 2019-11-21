@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
@@ -35,5 +36,15 @@ namespace Microwave.Test.Integration
             _sut = new CookController(_timer, _display, _powerTube);
             _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _door, _display, _light, _sut);
         }
+
+        //[Test]
+        //public void Cooking_TimerExpired_UICalled()
+        //{
+        //    _sut.StartCooking(50, 60);
+
+        //    _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+        //    _userInterface.CookingIsDone();
+        //}
     }
 }
