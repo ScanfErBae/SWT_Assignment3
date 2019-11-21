@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
@@ -34,6 +35,74 @@ namespace Microwave.Test.Integration
             _powerTube = Substitute.For<IPowerTube>();
             _cookController = new CookController(_timer, _display, _powerTube);
             _sut = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _door, _display, _light, _cookController);
+        }
+
+        [Test]
+        public void OnStartCancelPressed_TimeSet60_TimerReceivedStart60()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _timer.Received(1).Start(60);
+        }
+
+        [Test]
+        public void OnStartCancelPressed_PowerSet50_PowerTubeReceivedTurnOn50()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _powerTube.Received(1).TurnOn(50);
+        }
+
+        [Test]
+        public void OnDoorOpened_MicrowaveIsCooking_TimerStopped()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+
+            _timer.Received().Stop();
+        }
+
+        [Test]
+        public void OnDoorOpened_MicrowaveIsCooking_PowerTubeTurnedOff()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+
+            _powerTube.Received().TurnOff();
+        }
+
+        [Test]
+        public void OnStartCancelPressed_MicrowaveIsCooking_TimerStopped()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _timer.Received().Stop();
+        }
+
+        [Test]
+        public void OnStartCancelPressed_MicrowaveIsCooking_PowerTubeTurnedOff()
+        {
+            _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            _powerTube.Received().TurnOff();
         }
     }
 }
