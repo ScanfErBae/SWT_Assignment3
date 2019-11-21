@@ -37,7 +37,34 @@ namespace Microwave.Test.Integration
             _sut = new Door();
             _userInterface = new UserInterface(_buttonPower,_buttonTime, _buttonStartCancle, _sut, _display, _light, _cookController);
         }
+        [Test]
+        public void OpenDoor_1SubscriberAndReady_LightTurnOnIsCalled_OutputLine_Tested()
+        {
+            _sut.Open();
+            _output.Received(1).OutputLine("Light is turned on");
+        }
 
+        [Test]
+        public void CloseDoor_1SubscriberAndDoorWasOpen_LightTurnOffIsCalled_OutputLine_Tested()
+        {
+            _sut.Open();
+            _sut.Close();
+            _output.Received(1).OutputLine("Light is turned off");
+        }
 
+        [Test]
+        public void OpenDoor_1SubscriberAndCooking_CookControllerIsStoppedAndDisplayIsCleared_OutputLine_Tested()
+        {
+            _buttonPower.Press();
+            // Now in SetPower
+            _buttonTime.Press();
+            // Now in SetTime
+            _buttonStartCancle.Press();
+            // Now in SetPower
+            _sut.Open();
+
+            _output.Received(1).OutputLine("Display cleared");
+            _output.Received(1).OutputLine("PowerTube turned off");
+        }
     }
 }
