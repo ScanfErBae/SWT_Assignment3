@@ -109,14 +109,26 @@ namespace Microwave.Test.Integration
         #endregion
 
         #region Start-CancelButton
-        public void Press_StartCancelButton_once_system_is_cooking()
+        [Test]
+        public void StartCancelButton_PowerButtonAndTimeButtonIsPressedOnce_LightTurnOnAndCookControllerStartsAndPowerTubeTurnedOn()
         {
             _sutPowerButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
             _sutTimeButton.Press();
+            _output.Received(1).OutputLine("Display shows: 01:00");
+
             _sutStartCancelButton.Press();
 
-           
+            //Light works by pressing StartCancelButton
+            Assert.That(_light.isOn, Is.EqualTo(true));
+            _output.Received(1).OutputLine("Light is turned on");
 
+            //CookController is cooking & calling to the timer class
+            
+
+            //Powertube works by pressing StartCancelButton
+            Assert.That(_powerTube.IsOn, Is.EqualTo(true));
+            _output.Received(1).OutputLine("PowerTube works with 50 %");
         }
 
 
