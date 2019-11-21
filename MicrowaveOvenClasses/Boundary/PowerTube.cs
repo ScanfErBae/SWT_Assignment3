@@ -7,7 +7,7 @@ namespace MicrowaveOvenClasses.Boundary
     {
         private IOutput myOutput;
 
-        public bool IsOn = false;
+        public bool IsOn { private set; get; } = false;
 
         public PowerTube(IOutput output)
         {

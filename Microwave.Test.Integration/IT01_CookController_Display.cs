@@ -40,7 +40,5 @@ namespace Microwave.Test.Integration
 
             _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("1:55")));
         }
-
-
     }
 }
