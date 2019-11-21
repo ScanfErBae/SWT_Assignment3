@@ -5,6 +5,7 @@ using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Interfaces;
+using NSubstitute.ExceptionExtensions;
 
 namespace Microwave.Test.Integration
 {
@@ -33,11 +34,12 @@ namespace Microwave.Test.Integration
         [Test]
         public void StartCooking_ValidParameters_PowerTubeStarted()
         {
-            _sut.StartCooking(50, 60);
+            _sut.StartCooking(700, 60);
 
             Assert.That(_powerTube.IsOn, Is.True); 
         }
 
+       
         [Test]
         public void StartCooking_ValidParameters_PowerTubeStopped()
         {
@@ -56,6 +58,7 @@ namespace Microwave.Test.Integration
             Assert.That(_powerTube.IsOn, Is.False);
         }
 
+     
 
     }
 }
