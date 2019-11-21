@@ -106,13 +106,71 @@ namespace Microwave.Test.Integration
         #region StartCancelButton
 
         [Test]
-        public void Press_StartCancel_at_start_Nothing_happens()
+       public void Press_StartCancel_at_start_Nothing_happens()
         {
             _sutStartCancelButton.Press();
             _display.DidNotReceiveWithAnyArgs();
             _light.DidNotReceiveWithAnyArgs();
             _cookController .DidNotReceiveWithAnyArgs();
         }
+
+       [Test]
+       public void Press_StartCancel_at_Set_Power_State_Nothing_happens()
+       {
+           _sutPowerButton.Press();
+           _sutStartCancelButton.Press();
+           _display.Received(0).ShowPower(Arg.Is<int>(0));
+        }
+
+       [Test]
+       public void Press_StartCancel_at_Set_Time_State_Starts_Cooking()
+       {
+           _sutPowerButton.Press();
+           _sutTimeButton.Press();
+           _sutStartCancelButton.Press();
+           _cookController.Received(1).StartCooking(50,60);
+           
+           
+       }
+
+       [Test]
+       public void Press_StartCancel_at_Set_Time_State_Lights_Turned_On()
+       {
+           _sutPowerButton.Press();
+           _sutTimeButton.Press();
+           _sutStartCancelButton.Press();
+           _light.Received(1).TurnOn();
+       }
+
+       [Test]
+       public void Press_StartCancel_When_Cooking_Lights_Off()
+       {
+           _sutPowerButton.Press();
+           _sutTimeButton.Press();
+           _sutStartCancelButton.Press();
+           _sutStartCancelButton.Press();
+           _light.Received(1).TurnOff();
+        }
+
+       [Test]
+       public void Press_StartCancel_When_Cooking_Cooking_stop()
+       {
+           _sutPowerButton.Press();
+           _sutTimeButton.Press();
+           _sutStartCancelButton.Press();
+           _sutStartCancelButton.Press();
+           _cookController.Received(1).Stop();
+       }
+
+       [Test]
+       public void Press_StartCancel_When_Cooking_Clear_display()
+       {
+           _sutPowerButton.Press();
+           _sutTimeButton.Press();
+           _sutStartCancelButton.Press();
+           _sutStartCancelButton.Press();
+           _display.Received(1).Clear();
+       }
 
 
         #endregion
