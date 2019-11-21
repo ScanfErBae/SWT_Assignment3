@@ -37,5 +37,36 @@ namespace Microwave.Test.Integration
             _door = new Door();
             _userInterface = new UserInterface(_sutPowerButton, _sutTimeButton, _sutStartCancelButton, _door, _display, _light, _cookController);
         }
+
+        #region PowerButton
+
+        [Test]
+        public void Press_once_show_displayEqual100()
+        {
+            _sutPowerButton.Press();
+            _display.ShowPower(50);
+        }
+
+        [Test]
+        public void Press_four_times_show_displayEqual200()
+        {
+            _sutPowerButton.Press();
+            _sutPowerButton.Press();
+            _sutPowerButton.Press();
+            _sutPowerButton.Press();
+            _display.ShowPower(200);
+        }
+
+        [Test]
+        public void Press_twenty_times_show_displayEqual700()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                _sutPowerButton.Press();
+            }
+            _display.ShowPower(700);
+        }
+
+        #endregion
     }
 }
