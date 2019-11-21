@@ -39,7 +39,22 @@ namespace Microwave.Test.Integration
             Assert.That(_powerTube.IsOn, Is.True); 
         }
 
-       
+        [Test]
+        public void StartCooking_Invalid_ArgumentOutOfRangeException()
+        {
+            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(
+                delegate { throw new ArgumentOutOfRangeException("Must be between 1 and 100 % (incl.)"); });
+            Assert.That(ex.ParamName, Is.EqualTo("Must be between 1 and 100 % (incl.)"));
+        }
+
+        [Test]
+        public void StartCooking_Invalid_ApplicationException()
+        {
+            ApplicationException ex = Assert.Throws<ApplicationException>(
+                delegate { throw new ApplicationException("PowerTube.TurnOn: is already on"); });
+            Assert.That(ex.Message, Is.EqualTo("PowerTube.TurnOn: is already on"));
+        }
+
         [Test]
         public void StartCooking_ValidParameters_PowerTubeStopped()
         {
@@ -57,6 +72,8 @@ namespace Microwave.Test.Integration
 
             Assert.That(_powerTube.IsOn, Is.False);
         }
+
+
 
      
 
