@@ -42,8 +42,8 @@ namespace Microwave.Test.Integration
         public void OpenDoor_1SubscriberAndReady_LightTurnOnIsCalled_OutputLine_Tested()
         {
             _sut.Open();
-            _output.Received(1).OutputLine("Light is turned on");
             Assert.That(_light.isOn, Is.EqualTo(true));
+            _output.Received(1).OutputLine("Light is turned on");
         }
 
         [Test]
@@ -67,10 +67,11 @@ namespace Microwave.Test.Integration
             // Now in SetPower
             _sut.Open();
 
-            _output.Received(1).OutputLine("Display cleared");
-            _output.Received(1).OutputLine("PowerTube works with 50 %");
+            Assert.That(_powerTube.IsOn, Is.EqualTo(false));
             _output.Received(1).OutputLine("PowerTube turned off");
-            
+            _output.Received(1).OutputLine("Display cleared");
+
+
         }
     }
 }
