@@ -15,7 +15,6 @@ namespace Microwave.Test.Integration
         public IDisplay _display;
         public IPowerTube _powerTube;
         public IUserInterface _userInterface;
-        public IOutput _output;
         public CookController _cookController;
 
         public Timer _sut;
@@ -26,7 +25,6 @@ namespace Microwave.Test.Integration
             _display = Substitute.For<IDisplay>();
             _powerTube = Substitute.For<IPowerTube>();
             _userInterface = Substitute.For<IUserInterface>();
-            _output = Substitute.For<IOutput>();
             _sut = new Timer();
             _cookController = new CookController(_sut, _display,_powerTube, _userInterface);
         }

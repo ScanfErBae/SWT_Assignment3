@@ -254,7 +254,7 @@ namespace Microwave.Test.Unit
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetTime
             startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            // Now in cooking
+            // Now in cooking 
 
             uut.CookingIsDone();
 
