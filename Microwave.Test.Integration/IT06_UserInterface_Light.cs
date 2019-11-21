@@ -32,10 +32,10 @@ namespace Microwave.Test.Integration
             _buttonTime = Substitute.For<IButton>();
             _buttonStartCancel = Substitute.For<IButton>();
             _door = Substitute.For<IDoor>();
+            _cookController = Substitute.For<ICookController>();
 
             _light = new Light(_output);
-            _sut = new UserInterface(_buttonPower, _buttonTime, _buttonStartCancel, _door, _display, _light,
-                _cookController);
+            _sut = new UserInterface(_buttonPower, _buttonTime, _buttonStartCancel, _door, _display, _light,_cookController);
         }
 
         [Test]
@@ -56,20 +56,19 @@ namespace Microwave.Test.Integration
         }
 
 
-        //[Test]
-        //public void State_Set_Time_Press_Start_Cancel_Button()
-        //{
+        [Test]
+        public void State_Set_Time_Press_Start_Cancel_Button()
+        {
+            if (_buttonPower != null) _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-        //    _buttonPower.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetPower
-        //    _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-        //    _buttonStartCancel.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            
-        //    _output.Received(1).OutputLine("Light is turned on");
-        //}
+            _output.Received(1).OutputLine("Light is turned on");
+        }
 
-        
+
 
         //[Test]
         //public void CookingIsDone_Clear_Called()
