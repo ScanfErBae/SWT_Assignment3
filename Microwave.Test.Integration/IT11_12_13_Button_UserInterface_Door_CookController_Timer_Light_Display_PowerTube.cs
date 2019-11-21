@@ -110,7 +110,7 @@ namespace Microwave.Test.Integration
 
         #region Start-CancelButton
         [Test]
-        public void StartCancelButton_PowerButtonAndTimeButtonIsPressedOnce_LightTurnOnAndCookControllerStartsAndPowerTubeTurnedOn()
+        public void StartCancelButton_PowerButtonAndTimeButtonAndStartCancelButtonIsPressedOnce_LightTurnOnAndCookControllerStartsAndPowerTubeTurnedOn()
         {
             _sutPowerButton.Press();
             _output.Received(1).OutputLine("Display shows: 50 W");
@@ -119,19 +119,40 @@ namespace Microwave.Test.Integration
 
             _sutStartCancelButton.Press();
 
-            //Light works by pressing StartCancelButton
+            //Light is turned on 
             Assert.That(_light.isOn, Is.EqualTo(true));
             _output.Received(1).OutputLine("Light is turned on");
 
-            //CookController is cooking & calling to the timer class
-            
+            //CookController is cooking & calling to the timer class with startcooking
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(60));
 
-            //Powertube works by pressing StartCancelButton
+            //Powertube is turned on
             Assert.That(_powerTube.IsOn, Is.EqualTo(true));
-            _output.Received(1).OutputLine("PowerTube works with 50 %");
+            _output.Received(1).OutputLine("PowerTube works with 7 %");
         }
 
+        [Test]
+        public void StartCancelButton_PowerButtonAndTimeButtonIsPressedOnceAndStartCancelButtonIsPressedTwise_EverythingIsTurnedOffAndTimerRemainingIsNotReset()
+        {
+            _sutPowerButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _sutTimeButton.Press();
+            _output.Received(1).OutputLine("Display shows: 01:00");
 
+            _sutStartCancelButton.Press();
+            _sutStartCancelButton.Press();
+
+            //Light is turned off
+            Assert.That(_light.isOn, Is.EqualTo(false));
+            _output.Received(1).OutputLine("Light is turned off");
+
+            //CookController is cooking & calling to the timer class with startcooking
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(60));
+
+            //Powertube is turned off
+            Assert.That(_powerTube.IsOn, Is.EqualTo(false));
+            _output.Received(1).OutputLine("PowerTube turned off");
+        }
         #endregion
     }
 }
