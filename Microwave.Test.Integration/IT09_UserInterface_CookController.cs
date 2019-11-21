@@ -54,7 +54,7 @@ namespace Microwave.Test.Integration
             _buttonTime.Pressed += Raise.EventWith(this, EventArgs.Empty);
             _buttonStartCancle.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            _powerTube.Received(1).TurnOn(50);
+            _powerTube.Received(1).TurnOn(7);
         }
 
         [Test]

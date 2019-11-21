@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics;
+using NUnit.Framework;
 using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
@@ -37,5 +38,88 @@ namespace Microwave.Test.Integration
             _door = new Door();
             _userInterface = new UserInterface(_sutPowerButton, _sutTimeButton, _sutStartCancelButton, _door, _display, _light, _cookController);
         }
+
+        #region PowerButton
+
+        [Test]
+        public void Press_once_show_displayEqual50()
+        {
+            _sutPowerButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+        }
+
+        [Test]
+        public void Press_four_times_show_displayEqual200()
+        {
+            _sutPowerButton.Press();
+            _sutPowerButton.Press();
+            _sutPowerButton.Press();
+            _sutPowerButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _output.Received(1).OutputLine("Display shows: 100 W");
+            _output.Received(1).OutputLine("Display shows: 150 W");
+            _output.Received(1).OutputLine("Display shows: 200 W");
+        }
+
+        [Test]
+        public void Press_twenty_times_show_displayEqual700()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                _sutPowerButton.Press();
+            }
+            _output.Received(1).OutputLine("Display shows: 700 W");
+        }
+
+        #endregion
+
+        #region TimeButton
+        [Test]
+        public void Set_Time_Press_Power_Then_TimeButton_twice_show_displayEqual2()
+        {
+            _sutPowerButton.Press();
+            _sutTimeButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _output.Received(1).OutputLine("Display shows: 01:00");
+        }
+
+        [Test]
+        public void Increase_Time_Press_Power_Then_TimeButton_four_times_show_displayEqual2()
+        {
+            _sutPowerButton.Press();
+            _sutTimeButton.Press();
+            _sutTimeButton.Press();
+            _sutTimeButton.Press();
+            _sutTimeButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _output.Received(1).OutputLine("Display shows: 01:00");
+            _output.Received(1).OutputLine("Display shows: 02:00");
+            _output.Received(1).OutputLine("Display shows: 03:00");
+            _output.Received(1).OutputLine("Display shows: 04:00");
+            
+        }
+
+        [Test]
+        public void Not_Pressing_Power_Then_TimeButton_once_Exception()
+        {
+            _sutTimeButton.Press();
+            _output.DidNotReceive().OutputLine("Display shows: 01:00");
+        }
+
+        #endregion
+
+        #region Start-CancelButton
+        public void Press_StartCancelButton_once_system_is_cooking()
+        {
+            _sutPowerButton.Press();
+            _sutTimeButton.Press();
+            _sutStartCancelButton.Press();
+
+           
+
+        }
+
+
+        #endregion
     }
 }
