@@ -44,7 +44,7 @@ namespace Microwave.Test.Integration
         public void Press_once_show_displayEqual100()
         {
             _sutPowerButton.Press();
-            _display.ShowPower(50);
+            _output.Received(1).OutputLine("Display shows: 50 W");
         }
 
         [Test]
@@ -54,7 +54,10 @@ namespace Microwave.Test.Integration
             _sutPowerButton.Press();
             _sutPowerButton.Press();
             _sutPowerButton.Press();
-            _display.ShowPower(200);
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _output.Received(1).OutputLine("Display shows: 100 W");
+            _output.Received(1).OutputLine("Display shows: 150 W");
+            _output.Received(1).OutputLine("Display shows: 200 W");
         }
 
         [Test]
@@ -66,6 +69,46 @@ namespace Microwave.Test.Integration
             }
             _display.ShowPower(700);
         }
+
+        #endregion
+
+        #region TimeButton
+        [Test]
+        public void Set_Time_Press_Power_Then_TimeButton_twice_show_displayEqual2()
+        {
+            _sutPowerButton.Press();
+            _sutTimeButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _output.Received(1).OutputLine("Display shows: 01:00");
+        }
+
+        [Test]
+        public void Increase_Time_Press_Power_Then_TimeButton_four_times_show_displayEqual2()
+        {
+            _sutPowerButton.Press();
+            _sutTimeButton.Press();
+            _sutTimeButton.Press();
+            _sutTimeButton.Press();
+            _sutTimeButton.Press();
+            _output.Received(1).OutputLine("Display shows: 50 W");
+            _output.Received(1).OutputLine("Display shows: 01:00");
+            _output.Received(1).OutputLine("Display shows: 02:00");
+            _output.Received(1).OutputLine("Display shows: 03:00");
+            _output.Received(1).OutputLine("Display shows: 04:00");
+        }
+
+        [Test]
+        public void Not_Pressing_Power_Then_TimeButton_once_Exception()
+        {
+            _sutTimeButton.Press();
+            _output.DidNotReceive().OutputLine("Display shows: 01:00");
+        }
+
+        #endregion
+
+        #region Start-CancelButton
+
+        
 
         #endregion
     }
