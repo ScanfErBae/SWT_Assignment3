@@ -52,6 +52,14 @@ namespace Microwave.Test.Unit
         }
 
         [Test]
+        public void StartCooking_InvalidParameters_PowerTubeStarted()
+        {
+            uut.StartCooking(800, 60);
+
+            powerTube.Received().TurnOn(101);
+        }
+
+        [Test]
         public void Cooking_TimerTick_DisplayCalled()
         {
             uut.StartCooking(50, 60);

@@ -36,7 +36,7 @@ namespace Microwave.Test.Integration
             _door = Substitute.For<IDoor>();
             _light = Substitute.For<ILight>();
 
-            _timer = new Timer();
+            
             _display = new Display(_output);
             _sut = new UserInterface(_buttonPower, _buttonTime, _buttonStartCancel, _door, _display, _light, _cookController);
         }
