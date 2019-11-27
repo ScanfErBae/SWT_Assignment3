@@ -44,19 +44,11 @@ namespace Microwave.Test.Unit
         }
 
         [Test]
-        public void StartCooking_ValidParameters2_PowerTubeStarted()
+        public void StartCooking_InvalidParameters2_PowerTubeStarted()
         {
             uut.StartCooking(350, 60);
 
             powerTube.Received().TurnOn(50);
-        }
-
-        [Test]
-        public void StartCooking_InvalidParameters_PowerTubeStarted()
-        {
-            uut.StartCooking(800, 60);
-
-            powerTube.Received().TurnOn(101);
         }
 
         [Test]

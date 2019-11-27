@@ -8,7 +8,7 @@ using MicrowaveOvenClasses.Interfaces;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT11_12_13_Button_UserInterface_Door_CookController_Timer_Light_Display_PowerTube
+    public class IT12_13_14_Button_UserInterface_Door_CookController_Timer_Light_Display_PowerTube
     {
         public IOutput _output;
         public IDoor _door;
